@@ -1,0 +1,30 @@
+# Copyright 2021 Tulpan Andrei 314CA
+	Pentru rezolvarea temei m-am folosit de
+mai multe functii implementate la laboratoare
+(DoublyLinkedList, LinkedList, Hashtable).
+Cu ajutorul acestora am implementat toate
+functiile necesare.
+	Load Balancer-ul l-am implementat ca o
+lista dublu inlantuita de replici ale serverului
+real. Fiecare replica a serverului are campul data,
+care pointeaza catre o structura de tip server_memory
+(serverul real).
+	La adaugarea unui server, se adauga cele 3
+replici aferente serverului si serverul propriu-zis,
+apoi se face rebalansarea produselor cu ajutorul unui
+vector de pointeri. La stergerea unui server, se sterg
+cele 3 replici aferente serverului, apoi se rebalanseaza
+produsele in acelasi mod ca la adaugarea unui server,
+si in final se sterge si serverul, urmand sa se elibereze
+memoria pentru aceastea.
+	Fiecare structura (server_t) a unei replici contine
+un pointer catre serverul real, tag-ul acestei replici si
+hash-ul aferent. Fiecare structura (server_memory) a unui 
+server contine hashtable-ul aferent acelui server.
+	Operatiile efectuate pe fiecare server se fac prin
+apelarea functiilor aferente hashtable-ului cu parametrii
+necesari.
+	Functiile loader_store si loader_retrieve calculeaza
+pe ce server se vor face operatiile aferente serverului
+corespunzator comparand hash-urile, apoi apeleaza functiile 
+pe server.
